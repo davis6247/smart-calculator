@@ -64,11 +64,13 @@ class SmartCalculator {
   pow(exponent) {
       var numbers = this.expression.match(/\d+/g);    //get all number form the expression
       var previousNumber = numbers[numbers.length - 1];   //get last number
-      this.expression = this.expression.slice(0, this.expression.length - previousNumber.length);
-    
-      previousNumber = Math.pow(+previousNumber, exponent);
-
-      this.expression += previousNumber;
+      if(exponent == 1) this.expression += "*" + 1;
+        else{
+            this.expression = this.expression.slice(0, this.expression.length - previousNumber.length);
+            previousNumber = Math.pow(+previousNumber, exponent);
+            this.expression += previousNumber;
+        }
+      
     
       this.result = eval(this.expression);
 
